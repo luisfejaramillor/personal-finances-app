@@ -3,10 +3,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import appRoutes from "./routes/index.js";
 import dotenv from "dotenv";
-// import { connectDb } from "./config/dbConnection.js";
+import { connectDb } from "./config/dbConnection.js";
 
 dotenv.config();
-// connectDb();
+connectDb();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
