@@ -10,14 +10,17 @@ export const authorizeUser = (req, res, next) => {
 
     let token = authorization.split(" ")[1];
 
-    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const { id, exp } = jwt.verify(token, process.env.SECRET);
 
-    if (!decodedToken.id) {
+    if (!id) {
       return res.status(401).json(errorMessage);
     }
 
+    if (Date.now() > exp)
+      return res.status(401).json({ error: "Token expired" });
+
     next();
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
