@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 export const encrypt = async (textPlain) => {
   return await bcrypt.hash(textPlain, 10);

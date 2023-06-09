@@ -1,13 +1,12 @@
-import { encrypt, compare } from "../utils/index.js";
-
-
+import { User } from "../models/index.js";
+import { encrypt } from "../utils/index.js";
 
 export const createUser = async (req, res) => {
-    try {
-      const password = req.body.password
-      const result = await compare(password, await encrypt(password)) 
-      res.json(result);
-    } catch (error) {
-      res.status(404), json("You are nor allowed");
-    }
+  try {
+    const body = {...req.body, password:  await encrypt(req.body.password) }
+    const user = await User.create(body);
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+  }
 };

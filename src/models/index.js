@@ -1,5 +1,5 @@
-import { Login } from "./loginModel";
+import { User } from "./createUserModel.js";
 
 export {
-    Login
+    User
 }
