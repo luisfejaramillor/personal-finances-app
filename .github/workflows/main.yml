@@ -24,4 +24,3 @@ jobs:
       - name: Install
         run: |
           npm ci --silent
-          exit 1
