@@ -24,3 +24,5 @@ jobs:
       - name: Install
         run: |
           npm ci --silent
+          npm run build
+        working-directory: .
