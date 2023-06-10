@@ -19,5 +19,3 @@ app.use("/", appRoutes);
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
-
-console.log('first')

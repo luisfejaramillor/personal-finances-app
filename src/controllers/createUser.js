@@ -5,8 +5,8 @@ export const createUser = async (req, res) => {
   try {
     const body = {...req.body, password:  await encrypt(req.body.password) }
     const user = await User.create(body);
-    res.json(user);
+    return res.json(user);
   } catch (error) {
-    console.log(error);
+    return res.status(404).json({error});
   }
 };
