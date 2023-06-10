@@ -31,7 +31,8 @@ jobs:
         uses: actions/upload-pages-artifact@v1.0.8
         with: 
           name: build
-          path: .
-          ignore: node_modules  
+          path: |
+            .
+            !./node_modules  
           
         
