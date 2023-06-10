@@ -28,11 +28,12 @@ jobs:
         working-directory: .
         
       - name: Upload a build artifact
-        uses: actions/upload-pages-artifact@v1.0.8
+        uses: actions/upload-artifact@v3
         with: 
           name: build
           path: |
             .
-            !./node_modules  
+            !./node_modules
+
           
         
