@@ -32,6 +32,6 @@ jobs:
         with: 
           name: build
           path: .
-          ignore: node_modules
+          ignore: node_modules  
           
         
