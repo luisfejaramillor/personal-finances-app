@@ -6,7 +6,7 @@ export const generateToken = async (payload) => {
     {
       id,
       username,
-      exp: Date.now() + 60 * 1000,
+      exp: Date.now() + 60 * 1000 * 60,
     },
     process.env.SECRET
   );
