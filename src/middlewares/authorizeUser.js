@@ -1,14 +1,13 @@
 import jwt from "jsonwebtoken";
+import { destructureToken } from "../utils/index.js";
 
-export const authorizeUser = (req, res, next) => {
+export const authorizeUser = async (req, res, next) => {
   const errorMessage = { error: "Token missing or invalid" };
   try {
-    const authorization = req.get("authorization");
-    if (!authorization || !authorization.toLowerCase().startsWith("bearer")) {
+    const token = await destructureToken(req);
+    if (!token) {
       return res.status(401).json(errorMessage);
     }
-
-    let token = authorization.split(" ")[1];
 
     const { id, exp } = jwt.verify(token, process.env.SECRET);
 
