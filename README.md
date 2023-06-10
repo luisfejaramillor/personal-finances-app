@@ -1,0 +1,1 @@
+[![First workflow](https://github.com/luisfejaramillor/personal-finances-app/actions/workflows/main.yml/badge.svg)](https://github.com/luisfejaramillor/personal-finances-app/actions/workflows/main.yml)
