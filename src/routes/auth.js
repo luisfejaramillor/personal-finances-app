@@ -23,7 +23,7 @@ const validator = createValidator({});
 // Defining routes with corresponding controller functions
 router.post("/login", validator.body(loginUserValidation), authenticateUser);
 router.post("/register", validator.body(createUserValidation), createUser);
-router.delete("/delete-user", authorizeUser, isAdmin, deleteUser);
+router.delete("/delete-user/:id", authorizeUser, isAdmin, deleteUser);
 
 // Exporting the router to be used in the main application file
 export default router;

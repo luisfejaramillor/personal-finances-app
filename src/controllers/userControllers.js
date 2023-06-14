@@ -1,5 +1,9 @@
 import { User } from "../models/index.js";
-import { encrypt, compare, generateToken, destructureToken } from "../utils/index.js";
+import {
+  encrypt,
+  compare,
+  generateToken,
+} from "../utils/index.js";
 
 export const createUser = async (req, res) => {
   try {
@@ -14,7 +18,8 @@ export const createUser = async (req, res) => {
 export const authenticateUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username: (username.toLowerCase())});
+    console.log(user)
     const passwordCorrect =
       user === null ? false : await compare(password, user.password);
     if (!passwordCorrect) {
@@ -37,12 +42,15 @@ export const authenticateUser = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
+  const username = req.params.id;
   try {
+    const user = await User.findOneAndDelete({ username });
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    
-
-    // const user = await User.findOne({ username });
-    res.json('entré')
+    res.json({ message: "User deleted successfully" });
   } catch (error) {
     res.status(500).json("Something went wrong");
   }
