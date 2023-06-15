@@ -17,7 +17,7 @@ export const authorizeUser = async (req, res, next) => {
 
     if (Date.now() > exp)
       return res.status(401).json({ error: "Token expired" });
-
+    req.userNameId = id;
     next();
   } catch (error) {
     return res.status(500).json({ error: "Internal server error" });

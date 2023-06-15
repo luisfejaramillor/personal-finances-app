@@ -1,7 +1,8 @@
 import { healthCheck, welcomePage } from "./appController.js";
-import { createTransaction } from "./transactionsController.js";
+import { createTransaction, getAllTransactions } from "./transactionsController.js";
 import { createUser, deleteUser } from "./userControllers.js";
 import { authenticateUser } from "./userControllers.js";
+
 
 export {
   healthCheck,
@@ -9,7 +10,7 @@ export {
   authenticateUser,
   createUser,
   deleteUser,
-  createTransaction
+  createTransaction,
+  getAllTransactions,
 };
-
 
