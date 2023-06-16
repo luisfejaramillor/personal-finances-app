@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 const createTransactionSchema = mongoose.Schema({
   username: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'usersFinance',
-    required: true
+    ref: "usersFinance",
+    required: true,
   },
   account: {
     type: String,
-    required: true
+    required: true,
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
@@ -20,13 +20,16 @@ const createTransactionSchema = mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
     enum: ["income", "expense"],
-    required: true
-  }
+    required: true,
+  },
 });
 
-export const Transaction = mongoose.model("Transaction", createTransactionSchema);
+export const Transaction = mongoose.model(
+  "Transaction",
+  createTransactionSchema
+);

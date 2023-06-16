@@ -1,9 +1,5 @@
 import { User } from "../models/index.js";
-import {
-  encrypt,
-  compare,
-  generateToken,
-} from "../utils/index.js";
+import { encrypt, compare, generateToken } from "../utils/index.js";
 
 export const createUser = async (req, res) => {
   try {
@@ -11,15 +7,14 @@ export const createUser = async (req, res) => {
     const user = await User.create(body);
     return res.json(user);
   } catch (error) {
-    return res.status(404).json({ error });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
 export const authenticateUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ username: (username.toLowerCase())});
-    console.log(user)
+    const user = await User.findOne({ username: username.toLowerCase() });
     const passwordCorrect =
       user === null ? false : await compare(password, user.password);
     if (!passwordCorrect) {
@@ -37,7 +32,7 @@ export const authenticateUser = async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json("Something went wrong");
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -45,13 +40,12 @@ export const deleteUser = async (req, res) => {
   const username = req.params.id;
   try {
     const user = await User.findOneAndDelete({ username });
-    console.log(user);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     res.json({ message: "User deleted successfully" });
   } catch (error) {
-    res.status(500).json("Something went wrong");
+    res.status(500).json({ error: "Internal server error" });
   }
 };
