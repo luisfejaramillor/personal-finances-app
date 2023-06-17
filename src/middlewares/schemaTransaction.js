@@ -15,6 +15,8 @@ export const schemaQueryTransaction = Joi.object({
   category: Joi.string().optional().trim().empty().messages({
     "string.empty": "Category cannot be empty",
   }),
+  page: Joi.number().optional(),
+  pageSize: Joi.number().optional(),
   date: Joi.date().iso().optional().empty(null).messages({
     "date.format": "Invalid date format",
     "date.empty": "Date cannot be empty",

@@ -12,9 +12,25 @@ export const createTransaction = async (req, res) => {
 
 export const getAllTransactions = async (req, res) => {
   try {
-    const body = { ...req.query, username: req.userNameId };
-    const transactions = await Transaction.find(body);
-    return res.json(transactions);
+    const { page = 1, pageSize = 2, ...query } = req.query;
+    const body = { ...query, username: req.userNameId };
+    const totalCount = await Transaction.countDocuments({
+      ...query,
+      username: req.userNameId,
+    });
+    const totalPages = Math.ceil(totalCount / pageSize);
+
+    const skip = (page - 1) * pageSize;
+    const transactions = await Transaction.find(body)
+      .skip(skip)
+      .limit(pageSize);
+
+    return res.json({
+      transactions,
+      currentPage: page,
+      totalPages,
+      totalCount,
+    });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
