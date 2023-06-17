@@ -12,55 +12,18 @@ This API allows users to manage products by creating, reading, updating, and del
 3. Create a `.env` file with your environment variables.
 4. Run the server by running `npm start`.
 
-## Usage
+## Usage of API
 
-The API has the following endpoints:
+The API documentation is created in this link:
 
-### GET /api/v1/products
-
-Get a list of all products.
-
-### POST /api/v1/products
-
-Create a new product.
-
-### PATCH /api/v1/products/:id
-
-Update a product by ID.
-
-### DELETE /api/v1/products/:id
-
-Delete a product by ID.
-
-To create a product, make a `POST` request to `/api/v1/products` with a JSON body containing the following fields:
-
-- `name` (required, string)
-- `description` (required, string)
-- `price` (required, number)
-- `qty` (required, number)
-- `category` (required, number)
-- `id` (forbidden)
-
-Example JSON body:
-
-```json
-{
-    "name": "Product name",
-    "description": "Product description",
-    "price": 10.99,
-    "qty": 100,
-    "category": "Product category"
-}
-```
-
-To update a product, make a `PATCH` request to `/api/v1/products/:id` with a JSON body containing the fields you want to update.
-
-To delete a product, make a `DELETE` request to `/api/v1/products/:id`.
+- [API documentation](https://documenter.getpostman.com/view/13208108/2s93si1VDz)
 
 ## Technologies used
 
 - Express.js
 - Joi
+- Mongodb
+- NodeJs
 
 ## Contributions
 
