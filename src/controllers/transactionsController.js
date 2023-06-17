@@ -12,7 +12,7 @@ export const createTransaction = async (req, res) => {
 
 export const getAllTransactions = async (req, res) => {
   try {
-    const { page = 1, pageSize = 2, ...query } = req.query;
+    const { page = 1, pageSize = 5, ...query } = req.query;
     const body = { ...query, username: req.userNameId };
     const totalCount = await Transaction.countDocuments({
       ...query,
